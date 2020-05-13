@@ -7,4 +7,8 @@
     <string name="label_number">学号：</string>
     <string name="label_password">密码：</string>
     <string name="login_ing">登录中，请稍等</string>
+    <string name="title_home">首页</string>
+    <string name="title_grade">成绩</string>
+    <string name="title_class">课表</string>
+    <string name="title_mine">我的</string>
 </resources>
