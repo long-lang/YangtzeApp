@@ -1,4 +1,4 @@
-package com.sweethearts.p;
+package com.sweethearts.presenter;
 
 import android.app.Activity;
 

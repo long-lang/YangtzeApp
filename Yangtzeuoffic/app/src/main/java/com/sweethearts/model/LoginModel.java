@@ -131,7 +131,8 @@ public class LoginModel {
                     loginSuccess();
                     Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
-
+                    //清除 登陆的activity 使点击返回时 回到手机主屏幕 而不是登陆页面
+                    activity.finish();
                     return;
                 }
                 //登录失败的错误原因
@@ -146,10 +147,9 @@ public class LoginModel {
                     return;
                 }
 
+                //密码错误进行  重新进行此页面  账号密码回显
                 if ( myreponseBody.contains("密码错误") ) {
                     ToastUtils.showShort("账号 或 密码错误");
-                    //Intent intent = new Intent(activity, activity.getClass());
-                    //activity.startActivity(intent);
                     return;
                 }
             }
