@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.sweethearts.R;
-import com.sweethearts.p.LoginPresenter;
+import com.sweethearts.presenter.LoginPresenter;
 import com.sweethearts.ui.view.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
