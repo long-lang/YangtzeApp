@@ -17,7 +17,6 @@ public class LaucherActivity extends BaseActivity implements LaucherView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laucher);
         init();
-
     }
 
     @Override
