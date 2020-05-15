@@ -42,6 +42,7 @@ import androidx.core.content.FileProvider;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.sweethearts.R;
@@ -91,6 +92,71 @@ public class MyUtils {
 
 
 
+    public static void startActivity(String cls) {
+        try {
+            Intent intent = new Intent();
+            //前名一个参数是应用程序的包名,后一个是这个应用程序的主Activity名
+            intent.setComponent(new ComponentName(AppUtils.getAppPackageName(), cls));
+            startActivity(intent);
+        } catch (Exception e) {
+            ToastUtils.showShort(R.string.open_error);
+        }
+    }
+
+    public static void startActivity(Intent intent) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Context context = ActivityUtils.getTopActivity();
+        if (context == null) {
+            context = Utils.getApp().getApplicationContext();
+        }
+        if (context == null) {
+            ActivityUtils.startActivity(intent);
+            return;
+        }
+        context.startActivity(intent);
+        enterAnimation(context);
+    }
+
+    public static void enterAnimation(Context context) {
+        if (context instanceof Activity) {
+            Activity activity = (Activity) context;
+            activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+    }
+
+    public static void setToolbarBackToHome(final AppCompatActivity activity, Toolbar toolbar) {
+        activity.setSupportActionBar(toolbar);
+        Objects.requireNonNull(activity.getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.onBackPressed();
+                activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+    }
+
+    public static String createSDCardDir(String DirName) {
+        String path = "";
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            // 创建一个文件夹对象，赋值为外部存储器的目录
+            File sdcardDir = Environment.getExternalStorageDirectory();
+            //得到一个路径，内容是sdcard的文件夹路径和名字
+            path = sdcardDir.getPath() + "/" + DirName;
+            File path1 = new File(path);
+            if (!path1.exists()) {
+                //若不存在，创建目录，可以在应用启动的时候创建
+                if (path1.mkdirs()) {
+                    LogUtils.i("文件夹路径创建成功：" + path);
+                }
+            } else {
+                Log.i("MyUtils", "createSDCardDir()：文件夹路径已存在：" + path);
+            }
+        } else {
+            LogUtils.e("文件夹创建失败：" + DirName, "可能未取得读写权限");
+        }
+        return path;
+    }
 
 
 }

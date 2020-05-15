@@ -6,6 +6,9 @@ import android.os.Looper;
 import androidx.annotation.NonNull;
 
 
+import com.sweethearts.http.OkhttpError;
+import com.sweethearts.http.cacahe.CacheUtils;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -30,12 +33,60 @@ public abstract class StringCallBack implements Callback {
 
     @Override
     public void onFailure(@NonNull final Call call, @NonNull final IOException e) {
-
+        UI.post(new Runnable() {
+            @Override
+            public void run() {
+                String stringCache = CacheUtils.getStringCache(call);
+                if (stringCache == null) {
+                    onFinish(call, e.getMessage(), false, false);
+                    /*LogUtils.v("请求链接：" + call.request().url(),
+                            "执行操作：OkHttp缓存查询操作",
+                            "执行原因：" + e.getMessage(),
+                            "执行结果：没有缓存-回调错误信息");*/
+                } else {
+                    onFinish(call, stringCache, true, true);
+                    /*LogUtils.v("请求链接：" + call.request().url(),
+                            "执行操作：OkHttp缓存查询操作",
+                            "执行原因：" + e.getMessage(),
+                            "执行结果：存在缓存-回调缓存响应");*/
+                }
+            }
+        });
     }
 
     @Override
     public void onResponse(@NonNull final Call call, @NonNull Response response) throws IOException {
+        if (!response.isSuccessful()) {
+            onFailure(call, new IOException("code:" + response.code() + ",message:" + response.message()));
+        } else {
+            ResponseBody body = response.body();
+            if (body == null) {
+                onFailure(call, new IOException("The response'body is null"));
+            } else {
+                //请求结果
+                final String string = body.string();
+                if (string.contains(OkhttpError.ERROR_SCHOOL_HOST)) {
+                    onFailure(call, new IOException("Please connect to the campus network first"));
+                } else {
+                    //保存
+                    UI.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            /*LogUtils.v(call.request().url(), "OkHttp网络请求操作结果：存在响应-回调网络响应");*/
+                            onFinish(call, string, true, false);
+                        }
+                    });
+                    if (string.contains("请不要过快点击")) return;
+                    if (string.contains("密码错误")) return;
+                    if (string.contains("账户不存在")) return;
+                    if (string.contains("验证码不正确")) return;
+                    if (string.contains("重复登录")) return;
+                    if (string.contains("用户名")) return;
 
+                  //  CacheUtils.put(call, string);
+                }
+            }
+        }
 
     }
 }

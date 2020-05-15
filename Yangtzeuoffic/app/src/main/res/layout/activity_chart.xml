@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
     <com.google.android.material.appbar.AppBarLayout
         app:elevation="@dimen/elevation"
         android:id="@+id/app_bar"
@@ -14,25 +17,22 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:layout_collapseMode="pin"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/my_grade" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabIndicatorColor="@color/white"
-            app:tabMinWidth="60dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/white_e" />
+            app:title="@string/grade_chart" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/mLineChartView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp" />
+
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

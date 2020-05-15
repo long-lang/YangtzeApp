@@ -125,7 +125,6 @@ public class LoginModel {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String   myreponseBody = response.body().string();
-                LogUtils.i("lel",myreponseBody);
                 if (myreponseBody.contains("我的账户")) {
                     ToastUtils.showShort("登陆成功");
                     loginSuccess();
