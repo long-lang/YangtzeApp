@@ -26,6 +26,7 @@ import com.sweethearts.entity.GradeBean;
 import com.sweethearts.listener.OnResultListener;
 import com.sweethearts.presenter.GradePart1Presenter;
 import com.sweethearts.ui.activity.ChartActivity;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.ui.adapter.GradeAdapter;
 import com.sweethearts.ui.view.GradePartView1;
 import com.sweethearts.url.Url;
@@ -58,12 +59,13 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_grade_part1, container, false);
-        findviews();
+        findViews();
         setEvents();
         return rootView;
     }
 
-    private void findviews(){
+    @Override
+    public void findViews() {
         recyclerView = rootView.findViewById(R.id.mRecyclerView);
         chooseTerm = rootView.findViewById(R.id.chooseTerm);
         sort_low = rootView.findViewById(R.id.sort_low);
@@ -72,6 +74,11 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
         to_chart = rootView.findViewById(R.id.to_chart);
         change = rootView.findViewById(R.id.change);
     }
+
+
+
+
+
     public void setEvents() {
         index_url = Url.Yangtzeu_Grade_Url_Index1;
         url = Url.Yangtzeu_Grade_Url1;

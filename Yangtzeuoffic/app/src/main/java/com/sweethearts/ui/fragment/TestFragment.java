@@ -24,6 +24,7 @@ import com.sweethearts.R;
 import com.sweethearts.Utils.MyUtils;
 import com.sweethearts.http.OkHttp;
 import com.sweethearts.http.OnResultStringListener;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.url.Url;
 
 

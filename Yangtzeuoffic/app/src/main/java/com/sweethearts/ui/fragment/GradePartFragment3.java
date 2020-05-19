@@ -19,6 +19,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sweethearts.R;
 import com.sweethearts.entity.PointBean;
 import com.sweethearts.presenter.GradePart3Presenter;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.ui.adapter.PointAdapter;
 import com.sweethearts.ui.view.GradePartView3;
 import com.sweethearts.url.Url;

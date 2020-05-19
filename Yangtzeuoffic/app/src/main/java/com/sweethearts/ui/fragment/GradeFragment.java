@@ -17,13 +17,17 @@ import com.google.android.material.tabs.TabLayout;
 import com.sweethearts.R;
 import com.sweethearts.Utils.MyUtils;
 import com.sweethearts.presenter.GradePresenter;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.ui.adapter.FragmentAdapter;
 import com.sweethearts.ui.view.GradeView;
 import com.sweethearts.url.Url;
 
+import org.jsoup.Connection;
+
 import java.util.Objects;
 
-public class GradeFragment extends Fragment implements GradeView {
+public class GradeFragment extends BaseFragment implements GradeView {
+    private boolean isPrepared=false;
     public View rootView;
     //tab和pager管理切换的页面
     private ViewPager pager;
@@ -81,5 +85,16 @@ public class GradeFragment extends Fragment implements GradeView {
     @Override
     public Toolbar getToolbar() {
         return toolbar;
+    }
+
+    @Override
+    protected void lazyLoad() {
+        if(!isPrepared || !isVisible) {
+            return;
+        }
+        if (!isLoadFinish) {
+            setEvents();
+            isLoadFinish = true;
+        }
     }
 }

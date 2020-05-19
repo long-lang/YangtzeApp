@@ -38,6 +38,7 @@ import com.sweethearts.MyWebView;
 import com.sweethearts.R;
 import com.sweethearts.Utils.MyUtils;
 import com.sweethearts.entity.CollectionBean;
+import com.sweethearts.ui.activity.base.BaseActivity;
 import com.sweethearts.url.Url;
 import com.tencent.smtt.sdk.CookieManager;
 import com.tencent.smtt.sdk.WebView;

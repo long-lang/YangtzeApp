@@ -2,6 +2,8 @@ package com.sweethearts.ui.view;
 
 import android.widget.FrameLayout;
 
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sweethearts.ui.fragment.GradeFragment;
 import com.sweethearts.ui.fragment.HomeFragment;
@@ -15,6 +17,7 @@ public interface MainView {
 
     MineFragment getMineFragment();
     BottomNavigationView getBottomNavigationView();
+    DrawerLayout getDrawerLayout();
 
     GradeFragment getGradeFragment();
 

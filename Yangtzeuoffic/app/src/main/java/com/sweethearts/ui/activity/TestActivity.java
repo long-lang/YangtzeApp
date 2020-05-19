@@ -18,6 +18,7 @@ import com.sweethearts.Utils.MyUtils;
 import com.sweethearts.Utils.YangtzeuUtils;
 import com.sweethearts.listener.OnResultListener;
 import com.sweethearts.presenter.TestPresenter;
+import com.sweethearts.ui.activity.base.BaseActivity;
 import com.sweethearts.ui.view.TestView;
 import com.sweethearts.url.Url;
 

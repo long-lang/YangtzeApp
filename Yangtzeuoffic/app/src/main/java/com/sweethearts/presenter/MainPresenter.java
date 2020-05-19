@@ -19,4 +19,8 @@ public class MainPresenter {
     public void setBottomViewWithFragment() {
         model.setBottomViewWithFragment(activity, view);
     }
+
+    public void initEvents() {
+        model.initEvents(activity, view);
+    }
 }

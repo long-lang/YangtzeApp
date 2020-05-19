@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.ObjectUtils;
@@ -23,9 +23,11 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sweethearts.R;
 import com.sweethearts.Utils.YangtzeuUtils;
 import com.sweethearts.entity.GradeBean;
+
 import com.sweethearts.listener.OnResultListener;
 import com.sweethearts.presenter.GradePart2Presenter;
 import com.sweethearts.ui.activity.ChartActivity;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.ui.adapter.GradeAdapter;
 import com.sweethearts.ui.view.GradePartView2;
 import com.sweethearts.url.Url;

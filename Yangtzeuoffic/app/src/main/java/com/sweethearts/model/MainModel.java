@@ -1,6 +1,8 @@
 package com.sweethearts.model;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -9,16 +11,20 @@ import androidx.fragment.app.FragmentManager;
 
 import com.blankj.utilcode.util.FragmentUtils;
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ServiceUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.tabs.TabLayout;
 import com.sweethearts.R;
+import com.sweethearts.Utils.YangtzeuUtils;
+import com.sweethearts.service.BackgroundService;
 import com.sweethearts.ui.fragment.HomeFragment;
 import com.sweethearts.ui.view.MainView;
 
+import java.util.Objects;
 
 
-public class MainModel {
+public class MainModel implements IMainModel {
 
     public void setBottomViewWithFragment(final Activity activity,final MainView view) {
         //  开启 fragment事务管理
@@ -40,10 +46,10 @@ public class MainModel {
                         FragmentUtils.showHide(view.getHomeFragment(),
                                  view.getGradeFragment(), view.getTableFragment(), view.getMineFragment());
 
-//                        TabLayout tabLayout = HomeFragment.tabLayout;
-//                        if (tabLayout != null) {
-//                            Objects.requireNonNull(tabLayout.getTabAt(0)).select();
-//                        }
+                        TabLayout tabLayout = HomeFragment.tabLayout;
+                        if (tabLayout != null) {
+                            Objects.requireNonNull(tabLayout.getTabAt(0)).select();
+                        }
                         return true;
                     case R.id.grade:
                         view.getGradeFragment().setUserVisibleHint(true);
@@ -66,5 +72,18 @@ public class MainModel {
             }
         });
     }
+
+    @Override
+    public void initEvents(Activity activity, MainView view) {
+
+        Intent intent = new Intent(activity, BackgroundService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            activity.startForegroundService(intent);
+        } else {
+            ServiceUtils.startService(BackgroundService.class);
+        }
+
+    }
+
 }
 

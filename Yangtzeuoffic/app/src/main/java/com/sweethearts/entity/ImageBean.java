@@ -36,7 +36,7 @@ public class ImageBean implements Serializable {
         }
     }
 
-    public static ImageBean getImageBean(String[] trips,String[] imageObject) {
+    public static ImageBean getImageBean(String[] trips, String[] imageObject) {
         ImageBean imageBean = new ImageBean();
         List<ImageItem> list = new ArrayList<>();
         for (int i = 0; i < imageObject.length; i++) {

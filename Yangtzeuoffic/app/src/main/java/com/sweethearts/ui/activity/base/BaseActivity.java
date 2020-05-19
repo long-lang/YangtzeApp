@@ -1,6 +1,7 @@
-package com.sweethearts.ui.activity;
+package com.sweethearts.ui.activity.base;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 
@@ -21,4 +22,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
    public abstract void findViews();
    public abstract void setEvents();
+
+
 }

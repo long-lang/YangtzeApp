@@ -4,23 +4,21 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
+
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
 
 
-import com.blankj.utilcode.util.NetworkUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.sweethearts.R;
 import com.sweethearts.Utils.MyUtils;
+
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
 import com.tencent.smtt.sdk.ValueCallback;
@@ -28,6 +26,8 @@ import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+
 
 
 import java.util.Map;
@@ -102,6 +102,7 @@ public class X5WebView extends WebView {
         this.setWebViewClient(mWebViewClient);
         this.setWebChromeClient(mWebChromeClient);
 
+
     }
 
     //客户端设置
@@ -112,6 +113,8 @@ public class X5WebView extends WebView {
             //return false 历史记录不会保存重定向的网页
 
             view.loadUrl(Url);
+
+            //微信H5支付核心代码
 
             return super.shouldOverrideUrlLoading(view, Url);
         }
@@ -220,6 +223,7 @@ public class X5WebView extends WebView {
         webSetting.setDomStorageEnabled(true);
         webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
         webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
+
 
 
         //设置混合协议

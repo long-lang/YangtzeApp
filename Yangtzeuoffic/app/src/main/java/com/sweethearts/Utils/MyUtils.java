@@ -30,10 +30,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,12 +43,17 @@ import androidx.core.content.FileProvider;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.sweethearts.R;
 import com.sweethearts.entity.ImageBean;
-import com.sweethearts.ui.activity.SchoolPlanActivity;
+import com.sweethearts.ui.activity.ImageActivity;
 import com.sweethearts.ui.activity.WebActivity;
 
 import java.io.File;
@@ -64,9 +67,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -78,11 +79,110 @@ import java.util.regex.Pattern;
 
 public class MyUtils {
 
+    /**
+     * 保留几位小数
+     *
+     * @param big 要进行保留的大数
+     * @return 保留后的数
+     */
+    public static double getScale(double big, int Accuracy) {
+        double result = 0;
+        try {
+            BigDecimal bigDecimal = new BigDecimal(big);
+            result = bigDecimal.setScale(Accuracy, RoundingMode.HALF_UP).doubleValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 分享文件
+     *
+     * @param what 分享内容
+     */
+    public static void shareText(Context context, String what) {
+        Intent share = new Intent();
+        share.setAction(Intent.ACTION_SEND);
+        share.putExtra(Intent.EXTRA_TEXT, "分享了：\n" + what);
+        share.setType("text/plain");
+        context.startActivity(Intent.createChooser(share, "分享到"));
+        enterAnimation(context);
+    }
+
     public static void mVibrator(Context context, int time) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = {0, time}; //0ms—500ms
         Objects.requireNonNull(vibrator).vibrate(pattern, -1);
     }
+    public static void loadImage(Context context, ImageView imageView, Object o) {
+        if (ObjectUtils.isNotEmpty(o)) {
+            if (context instanceof Activity) {
+                if (((Activity) context).isDestroyed()) {
+                    return;
+                }
+            }
+            if (o.toString().contains("default_header")) {
+                Glide.with(context).load(R.mipmap.holder).into(imageView);
+                return;
+            }
+            Glide.with(context).load(o).into(imageView);
+        }
+    }
+
+    /**
+     * 加载图片,不缓存
+     *
+     * @param imageView 图片容器
+     * @param o         图片内容（链接、文件等等）
+     */
+    public static void loadImageNoCache(Context context, ImageView imageView, Object o) {
+        if (ObjectUtils.isNotEmpty(context)) {
+            if (context instanceof Activity) {
+                if (((Activity) context).isDestroyed()) {
+                    return;
+                }
+            }
+            RequestOptions options = new RequestOptions()
+                    .skipMemoryCache(true)
+                    .placeholder(R.mipmap.holder)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE);
+            Glide.with(context).load(o).apply(options).into(imageView);
+        }
+    }
+
+    /**
+     * 打开图片
+     *
+     * @param bean 图片资源
+     */
+    public static void openImage(Context context, ImageBean bean) {
+        Intent intent = new Intent(context, ImageActivity.class);
+        intent.putExtra("image_list", bean);
+        context.startActivity(intent);
+        enterAnimation(context);
+    }
+
+    public static void openImage(Context context, String url) {
+        String[] trip = {url};
+        openImage(context, ImageBean.getImageBean(trip, trip));
+    }
+
+    /**
+     * @param string base64值
+     * @return 返回类型
+     */
+    public static Bitmap base64ToBitmap(String string) {
+        Bitmap bitmap = null;
+        try {
+            byte[] bitmapArray = Base64.decode(string.split(",")[1], Base64.DEFAULT);
+            bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
 
 
 
@@ -98,10 +198,7 @@ public class MyUtils {
         return list;
     }
 
-    public static void startActivity(Class<? extends Activity> activity) {
-        Intent intent = new Intent(Utils.getApp().getApplicationContext(), activity);
-        startActivity(intent);
-    }
+
 
     public static void startActivity(String cls) {
         try {
@@ -126,6 +223,11 @@ public class MyUtils {
         }
         context.startActivity(intent);
         enterAnimation(context);
+    }
+
+    public static void startActivity(Class<? extends Activity> activity) {
+        Intent intent = new Intent(Utils.getApp().getApplicationContext(), activity);
+        startActivity(intent);
     }
 
     public static void enterAnimation(Context context) {
@@ -329,4 +431,38 @@ public class MyUtils {
         intent.setData(url);
         context.startActivity(intent);
     }
+    public static void saveImageToGallery(Context context, String s) {
+    }
+
+    /**
+     * 重写对话框关闭事件
+     *
+     * @param dialogInterface 对话框
+     * @param close           是否能关闭
+     */
+    public static void canCloseDialog(DialogInterface dialogInterface, boolean close) {
+        try {
+            Field field = Objects.requireNonNull(dialogInterface.getClass().getSuperclass()).getDeclaredField("mShowing");
+            field.setAccessible(true);
+            field.set(dialogInterface, close);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getIntStringWeek() {
+        int[] weekDays = {7, 1, 2, 3, 4, 5, 6};
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(TimeUtils.getNowDate());
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0)
+            w = 0;
+        return weekDays[w];
+    }
+
+
+   /* public static void openImage(Context context, String url) {
+        String[] trip = {url};
+        openImage(context, ImageBean.getImageBean(trip, trip));
+    }*/
 }

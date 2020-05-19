@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.sweethearts.R;
 import com.sweethearts.Utils.MyUtils;
 import com.sweethearts.presenter.ChangePassPresenter;
+import com.sweethearts.ui.activity.base.BaseActivity;
 import com.sweethearts.ui.view.ChangePassView;
 import com.sweethearts.url.Url;
 

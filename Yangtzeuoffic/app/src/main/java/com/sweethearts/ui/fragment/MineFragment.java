@@ -24,6 +24,7 @@ import com.sweethearts.ui.activity.ChooseClassActivity;
 import com.sweethearts.ui.activity.PingJiaoActivity;
 import com.sweethearts.ui.activity.SchoolPlanActivity;
 import com.sweethearts.ui.activity.TestActivity;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.url.Url;
 
 import java.util.Objects;
@@ -50,7 +51,7 @@ public class MineFragment extends BaseFragment {
         return rootView;
     }
 
-    private void findViews() {
+    public void findViews() {
         cetLayout = rootView.findViewById(R.id.cetLayout);
         logoutLayout = rootView.findViewById(R.id.logoutLayout);
         changeLayout = rootView.findViewById(R.id.changeLayout);
@@ -61,7 +62,8 @@ public class MineFragment extends BaseFragment {
 
     }
 
-    private void setEvents(){
+    @Override
+    public void setEvents(){
         cetLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

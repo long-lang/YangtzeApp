@@ -117,13 +117,6 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
                         .setTitle("成绩详情")
                         .setMessage(details)
                         .setPositiveButton("知道了",null)
-//                        .setNegativeButton("分享成绩", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                MyUtils.shareText(context, "给你看看我的成绩噢" +
-//                                        "!\n\n" + details + "\n\n数据来自：" + Url.AppDownUrl);
-//                            }
-//                        })
                         .create();
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.show();
