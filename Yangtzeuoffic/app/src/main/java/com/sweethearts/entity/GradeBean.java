@@ -4,19 +4,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+//   成绩的实体类
 public class GradeBean implements Serializable {
     private List<GradeBean> gradeBeans= new ArrayList<>();
 
+    //课程年份
     private String courseYear;
+    //课程学期
     private String courseTerm;
+    //课程号
     private String courseCode;
+
+    //课程下标
     private String courseIndex;
+    //课程名称
     private String courseName;
+    //课程类型
     private String courseKind;
+    //课程分数
     private String courseScore;
+    //课程补考
     private String courseBuKao;
     private String courseZongPing;
     private String courseZuiZhong;
+    //课程绩点
     private String coursePoint;
 
     public List<GradeBean> getGradeBeans() {

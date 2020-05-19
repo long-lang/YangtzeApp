@@ -9,10 +9,7 @@ public class Url {
     /**
      * 基本配置参数
      */
-    //App接口Host
-    public static final String My_App_Home = "http://101.132.108.0";
-    //App接口Host
-    public static final String My_Api_Home = "http://api.xiaoyv.top";
+
     //mob的Key secret
     public static final String key = "20588bd8fbea0";
 
@@ -30,7 +27,7 @@ public class Url {
      * 教务各类网址
      */
     //默认的学期期
-    public static final String Default_Term = "69";
+    public static final String Default_Term = "89";
     //登录接口
     public static final String Yangtzeu_Login_Path = Yangtzeu_Base_Url + "/eams/login.action";
     //验证码地址
@@ -138,8 +135,7 @@ public class Url {
     public static final String Yangtzeu_ZhanNei = Yangtzeu_Base_Url + "/eams/systemMessageForStd!search.action";
     //成绩导出
     public static final String Yangtzeu_Grade_Export = Yangtzeu_Base_Url + "/eams/postgraduate/midterm/stdExamine!export.action";
-    //长大校历
-    public static final String Yangtzeu_School_Plan = My_App_Home + "/yangtzeu/time/index.html";
+
     //长大新闻
     public static final String Yangtzeu_News = "http://news.yangtzeu.edu.cn/";
     //长大新闻搜索
@@ -158,10 +154,7 @@ public class Url {
     public static final String Yangtzeu_JXDT = "http://jwc.yangtzeu.edu.cn/jwxw/jxdt.htm";
     //教学简报
     public static final String Yangtzeu_JXJB = "http://jwc.yangtzeu.edu.cn/jwxw/jxjb.htm";
-    //长江大学网站
-    public static final String Yangtzeu_All_Web = My_App_Home + "/yangtzeu/json/yz_web.json";
-    //软件集
-    public static final String Yangtzeu_All_Web_Soft = My_App_Home + "/yangtzeu/json/yz_web_soft.json";
+
     //长江大学学院网站
     public static final String Yangtzeu_XueYuanWeb = "http://www.yangtzeu.edu.cn/xndh/jxdw.htm";
     //缴纳网费
@@ -187,22 +180,6 @@ public class Url {
     public static String Yangtzeu_Physical_Verify = "http://10.10.16.16/index.php/home/index/verify";
 
 
-    /**
-     * 答案相关
-     */
-    public static final String Yangtzeu_Answer_YY = My_App_Home + "/yangtzeu/html/answer/answer_yy/";
-    public static final String Yangtzeu_Answer_SX = My_App_Home + "/yangtzeu/html/answer/answer_sx/";
-    public static final String Yangtzeu_Answer_WL = My_App_Home + "/yangtzeu/html/answer/answer_wl/";
-    public static final String Yangtzeu_Answer_JK = My_App_Home + "/yangtzeu/html/answer/answer_jk/";
-    public static final String Yangtzeu_Answer_CJ = My_App_Home + "/yangtzeu/html/answer/answer_cj/";
-    public static final String Yangtzeu_Answer_HX = My_App_Home + "/yangtzeu/html/answer/answer_hx/";
-    public static final String Yangtzeu_Answer_ZT = My_App_Home + "/yangtzeu/html/answer/answer_zt/";
-    public static final String Yangtzeu_Answer_DL = My_App_Home + "/yangtzeu/html/answer/answer_dl/";
-    //答案页面Banner
-    public static final String Yangtzeu_App_Answer_Banner = My_App_Home + "/yangtzeu/json/yz_answer_banner.json";
-    //热门答案
-    public static final String Yangtzeu_App_Hot_Answer = My_App_Home + "/yangtzeu/json/yz_answer_hot.json";
-
 
     //课表默认背景
     public static final String Yangtzeu_Table_Background_White = "http://whysroom.oss-cn-beijing.aliyuncs.com/yangtzeu/normal/white.jpg";
@@ -211,248 +188,10 @@ public class Url {
     //爱心
     public static final String Yangtzeu_App_Love = "http://whysroom.oss-cn-beijing.aliyuncs.com/yangtzeu/normal/love.png";
 
-
-    /**
-     * App各类接口相关
-     */
-    //最近节日
-    public static final String Yangtzeu_Next_Holiday =My_App_Home +  "/fun_web/holiday.php";
-    //天气查询
-    public static final String Yangtzeu_Weather = "http://apicloud.mob.com/v1/weather/query?key=" + key + "&province=湖北&city=";
-    //当前在线人数
-    public static final String Yangtzeu_App_Online = My_App_Home + "/yangtzeu/api/yz_online.php";
-    //当前在线人数
-    public static final String Yangtzeu_App_Online_Show = My_App_Home + "/yangtzeu/api/yz_online_show.php";
-    //长大App
-    public static final String Yangtzeu_App_MyApp = My_App_Home + "/yangtzeu/json/yz_app.json";
-    //功能页面滚动条通知
-    public static final String Yangtzeu_App_Many_Notice = My_App_Home + "/yangtzeu/json/yz_many_notice.json";
-    //功能页面Banner
-    public static final String Yangtzeu_App_Many_Banner = My_App_Home + "/yangtzeu/json/yz_many_banner.json";
-    //广告
-    public static final String Yangtzeu_AD = My_App_Home + "/yangtzeu/json/yz_ad.json";
-    //App酷安下载地址
-    public static final String AppDownUrl = "https://www.coolapk.com/apk/com.yangtzeu";
-    //App更新地址
-    public static final String Yangtzeu_AppUp_Url = My_App_Home + "/yangtzeu/json/yz_update.json";
-    //AppAlertNotice通知地址
-    public static final String Yangtzeu_AppAlertNotice = My_App_Home + "/yangtzeu/json/yz_main_alert.json";
-    //AppMainNotice通知地址
-    public static final String Yangtzeu_AppMainNotice = My_App_Home + "/yangtzeu/json/yz_main_notice.json";
-    //封号相关
-    public static final String Yangtzeu_FengHao = My_App_Home + "/yangtzeu/api/yz_ban.php?action=add_ban_user&submit=do";
-    public static final String Yangtzeu_RemoveFengHao = My_App_Home + "/yangtzeu/api/yz_ban.php?action=delete_ban_user&submit=do&id=";
-    public static final String Yangtzeu_ShowBanUser = My_App_Home + "/yangtzeu/api/yz_ban.php?action=query_ban_user&submit=do";
-    //功能页面
-    public static final String Yangtzeu_Many_Item = My_App_Home + "/yangtzeu/json/yz_many.json";
-    //导航界面
-    public static final String Yangtzeu_AppTripInfo = My_App_Home + "/yangtzeu/json/yz_trip.json";
-    //游戏
-    public static final String Yangtzeu_App_Game = My_App_Home + "/yangtzeu/json/yz_game.json";
-    //锁屏白名单
-    public static final String Yangtzeu_App_Lock_White = My_App_Home + "/yangtzeu/json/yz_lock_white.json";
-    //开源地址
-    public static final String Yangtzeu_Github = "https://github.com/xiaoyvyv/YangtzeuApp/blob/master/README.md";
-    //翻译
-    public static final String Yangtzeu_Translate = "http://api.guaqb.cn/api.php?fy=";
-    //X5内核调试
-    public static final String Yangtzeu_Debug_X5 = "http://debugtbs.qq.com";
-    //App反馈地址
-    public static final String Yangtzeu_App_FeedBack = My_App_Home + "/yangtzeu/api/yz_feedback.php";
-    //全民k歌解析
-    public static final String Yangtzeu_App_Kg = "http://3g.gljlw.com/diy/kge.php?url=";
-    //OSS上传凭证
-    public static final String Yangtzeu_App_STS = My_App_Home + "/sts-server/sts.php";
-    //App留言板--发表
-    public static final String Yangtzeu_App_Board = My_App_Home + "/yangtzeu/api/yz_board.php?action=add";
-    //App留言板--展示
-    public static final String Yangtzeu_App_ShowMessage = My_App_Home + "/yangtzeu/api/yz_board.php?&which=30&start=";
-    //App留言板--回复
-    public static final String Yangtzeu_App_Reply_Message = My_App_Home + "/yangtzeu/api/yz_board_replay.php";
-    //发邮件
-    public static final String Yangtzeu_App_SendEmail = My_App_Home + "/user_system/php_mail/mail.php";
-    //优惠券
-    public static final String Yangtzeu_App_Quan = My_App_Home + "/fun_web/quan/index.php";
-    //优惠券
-    public static final String Yangtzeu_Group_List = My_App_Home + "/yangtzeu/json/yz_group.json";
-    //我的官方群
-    public static final String Yangtzeu_Join_Group = "http://qm.qq.com/cgi-bin/qm/qr?k=dezJxL7E5dTPk0-q5Is6tKA8mPHgIfxy";
-    //Vip视频
-    public static final String Yangtzeu_App_Vip_Video = My_App_Home + "/yangtzeu/json/yz_vipvideo.json";
-
-    //等级系统
-    public static final String Yangtzeu_App_Level = My_Api_Home + "/level";
-
-
-
-
     /**
      * Voa听力
      */
     public static final String Yangtzeu_Voa_Home = "http://www.51voa.com/";
 
 
-
-
-    //获取通知消息
-    public static String getMessage(String to) {
-        return My_App_Home + "/yangtzeu/api/yz_message.php?action=query_message&submit=do"
-                + "&to=" + to;
-    }
-
-    //设置通知消息已读
-    public static String getReadMessage(String id) {
-        return My_App_Home + "/yangtzeu/api/yz_message.php?action=set_read&submit=do"
-                + "&id=" + id;
-    }
-
-    //删除消息
-    public static String deleteMessage(String id) {
-        return My_App_Home + "/yangtzeu/api/yz_message.php?action=delete_message&submit=do"
-                + "&id=" + id;
-    }
-
-    //发送消息
-    public static String getSendMessage(String text, String from, String from_number, String to) {
-        return My_App_Home + "/yangtzeu/api/yz_message.php?action=add_message&submit=do"
-                + "&text=" + text
-                + "&from=" + from
-                + "&from_number=" + from_number
-                + "&to=" + to;
-    }
-
-
-    //增加商品
-    public static Request getAddGoodsUrl(String name, String description, String master,
-                                         String master_id, String type, String price,
-                                         String phone, String qq, String wechat, String image) {
-        LogUtils.i(name, description, master, master_id, type, price, phone, qq, wechat, image);
-        FormBody formBody = new FormBody.Builder()
-                .add("name", name)
-                .add("description", description)
-                .add("master", master)
-                .add("master_id", master_id)
-                .add("price", price)
-                .add("phone", phone)
-                .add("qq", qq)
-                .add("wechat", wechat)
-                .add("type", type)
-                .add("image", image)
-                .build();
-        return new Request.Builder()
-                .url(My_App_Home + "/yangtzeu/api/yz_shop.php?action=add")
-                .post(formBody)
-                .build();
-    }
-
-    //删除商品
-    public static String deleteGoods(String id) {
-        return My_App_Home + "/yangtzeu/api/yz_shop.php?action=delete&id=" + id;
-    }
-
-    //查询商品
-    public static String queryAllGoods(String query_type, String query_text, int page) {
-        if (query_type == null || query_text == null) {
-            return My_App_Home + "/yangtzeu/api/yz_shop.php?action=query" + "&page=" + page;
-        } else {
-            return My_App_Home + "/yangtzeu/api/yz_shop.php?action=query&query_type=" + query_type + "&query_text=" + query_text + "&page=" + page;
-        }
-    }
-
-    //增加商品评论
-    public static Request getAddGoodsReplayUrl(String good_id, String user_id, String user_name, String content) {
-        FormBody formBody = new FormBody.Builder()
-                .add("good_id", good_id)
-                .add("user_id", user_id)
-                .add("user_name", user_name)
-                .add("content", content)
-                .build();
-        return new Request.Builder()
-                .url(My_App_Home + "/yangtzeu/api/yz_shop_replay.php?action=add")
-                .post(formBody)
-                .build();
-    }
-
-
-    //添加用户
-    public static String addUser(String username, String nickname, String mobile, String email, String password) {
-        return My_App_Home + "/yangtzeu/api/yz_user.php?action=add_userinfo&submit=do"
-                + "&username=" + username
-                + "&nickname=" + nickname
-                + "&mobile=" + mobile
-                + "&email=" + email
-                + "&password=" + password;
-    }
-
-    //查询用户
-    public static String queryUser(String mobile) {
-        return My_App_Home + "/yangtzeu/api/yz_user.php?action=query_userinfo"
-                + "&mobile=" + mobile;
-    }
-
-    //查询表白
-    public static String queryAllLove(String query_type, String query_text, int page) {
-        if (query_type == null || query_text == null) {
-            return My_App_Home + "/yangtzeu/api/yz_love.php?action=query&page=" + page;
-        } else {
-            return My_App_Home + "/yangtzeu/api/yz_love.php?action=query&query_type=" + query_type + "&query_text=" + query_text + "&page=" + page;
-        }
-    }
-
-    //增加表白
-    public static Request getAddLoveUrl(String master_ta, String description,
-                                        String master, String master_id,
-                                        String music, String qq_ta,
-                                        String qq, String isHide, String image) {
-        LogUtils.i(master_ta, description, master, master_id, qq_ta, qq, image);
-        FormBody formBody = new FormBody.Builder()
-                .add("master_ta", master_ta)
-                .add("description", description)
-                .add("master", master)
-                .add("master_id", master_id)
-                .add("qq_ta", qq_ta)
-                .add("qq", qq)
-                .add("music", music)
-                .add("hide", isHide)
-                .add("image", image)
-                .build();
-        return new Request.Builder()
-                .url(My_App_Home + "/yangtzeu/api/yz_love.php?action=add")
-                .post(formBody)
-                .build();
-    }
-
-
-    //增加表白评论
-    public static Request getAddLoveReplayUrl(String love_id, String user_id, String user_name, String content) {
-        FormBody formBody = new FormBody.Builder()
-                .add("love_id", love_id)
-                .add("user_id", user_id)
-                .add("user_name", user_name)
-                .add("content", content)
-                .build();
-        LogUtils.i(love_id, user_id, user_name, content);
-        return new Request.Builder()
-                .url(My_App_Home + "/yangtzeu/api/yz_love_replay.php?action=add")
-                .post(formBody)
-                .build();
-    }
-
-    //删除表白
-    public static String deleteLove(String id) {
-        return My_App_Home + "/yangtzeu/api/yz_love.php?action=delete&id=" + id;
-    }
-
-    //点击数统计
-    public static String getTongJi(String key, String name, boolean isAdd) {
-        if (isAdd) {
-            return My_App_Home + "/yangtzeu/api/yz_statistics.php?action=do"
-                    + "&key=" + key
-                    + "&name=" + name;
-        } else {
-            return My_App_Home + "/yangtzeu/api/yz_statistics.php?action=do&type=find"
-                    + "&key=" + key
-                    + "&name=" + name;
-        }
-    }
 }

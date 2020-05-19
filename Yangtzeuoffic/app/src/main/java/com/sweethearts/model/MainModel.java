@@ -21,9 +21,10 @@ import com.sweethearts.ui.view.MainView;
 public class MainModel {
 
     public void setBottomViewWithFragment(final Activity activity,final MainView view) {
+        //  开启 fragment事务管理
         final FragmentManager manager = ((AppCompatActivity) activity).getSupportFragmentManager();
+        //  将fragment 跟 帧布局 由fragmentUtils绑定
         FragmentUtils.add(manager, view.getHomeFragment(), view.getFragmentContainer().getId(), false);
-
         FragmentUtils.add(manager, view.getTableFragment(), view.getFragmentContainer().getId(), true);
         FragmentUtils.add(manager, view.getMineFragment(), view.getFragmentContainer().getId(), true);
         FragmentUtils.add(manager, view.getGradeFragment(), view.getFragmentContainer().getId(), true);
@@ -35,6 +36,7 @@ public class MainModel {
                 switch (menuItem.getItemId()) {
                     case R.id.home:
                         view.getHomeFragment().setUserVisibleHint(true);
+                        // showhide 方法 将第一个参数的fragment显示，之后的fragment隐藏
                         FragmentUtils.showHide(view.getHomeFragment(),
                                  view.getGradeFragment(), view.getTableFragment(), view.getMineFragment());
 

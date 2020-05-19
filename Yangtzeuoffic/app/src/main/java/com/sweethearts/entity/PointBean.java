@@ -1,10 +1,16 @@
 package com.sweethearts.entity;
 
+//绩点的实体类
 public class PointBean {
+    //课程年份
     private String courseYear;
+    //课程学期
     private String courseTerm;
+    //课程号
     private String courseNumber;
+    //课程分数
     private String courseScore;
+    //课程学分
     private String coursePoint;
 
     public String getCourseYear() {

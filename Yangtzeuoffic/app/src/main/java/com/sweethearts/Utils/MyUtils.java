@@ -30,8 +30,10 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,9 +45,13 @@ import androidx.core.content.FileProvider;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.sweethearts.R;
+import com.sweethearts.entity.ImageBean;
+import com.sweethearts.ui.activity.SchoolPlanActivity;
+import com.sweethearts.ui.activity.WebActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +64,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -90,7 +98,10 @@ public class MyUtils {
         return list;
     }
 
-
+    public static void startActivity(Class<? extends Activity> activity) {
+        Intent intent = new Intent(Utils.getApp().getApplicationContext(), activity);
+        startActivity(intent);
+    }
 
     public static void startActivity(String cls) {
         try {
@@ -159,4 +170,163 @@ public class MyUtils {
     }
 
 
+    public static String getRand(int num) {
+        Random ran = new Random(System.currentTimeMillis());
+        int refresh_int = ran.nextInt(num);
+        String str = String.valueOf(refresh_int);
+        LogUtils.i("获取的随机数为", str);
+        return str;
+    }
+
+    public static ProgressDialog getProgressDialog(Context context, String s) {
+        ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle(context.getString(R.string.trip));
+        progressDialog.setMessage(s);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        return progressDialog;
+    }
+    public static AlertDialog getAlert(Context context, String message, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder build = new AlertDialog.Builder(context);
+        build.setTitle(R.string.trip);
+        build.setMessage(message);
+        build.setPositiveButton(R.string.done, listener);
+        build.setNegativeButton(R.string.clear, null);
+        build.create();
+        AlertDialog dialog = build.create();
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
+    }
+
+    public static AlertDialog getAlert(Context context, String message, DialogInterface.OnClickListener pos_listener, DialogInterface.OnClickListener neg_listener) {
+        AlertDialog.Builder build = new AlertDialog.Builder(context);
+        build.setTitle(R.string.trip);
+        build.setMessage(message);
+        build.setPositiveButton(R.string.done, pos_listener);
+        build.setNegativeButton(R.string.clear, neg_listener);
+        build.create();
+        AlertDialog dialog = build.create();
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
+    }
+
+    /**
+     * 文件大小换算
+     *
+     * @param target_size 字节大小
+     * @return 文件大小
+     */
+    public static String FormatSize(Context context, String target_size) {
+        return Formatter.formatFileSize(context, Long.valueOf(target_size));
+    }
+
+    public static String rootPath() {
+        File sdcardDir = Environment.getExternalStorageDirectory();
+        //得到一个路径，内容是sdcard的文件夹路径和名字
+        String path = sdcardDir.getPath();
+        return path + "/";
+    }
+
+    public static void setCookies(String url) {
+        com.tencent.smtt.sdk.CookieManager cookieManager = com.tencent.smtt.sdk.CookieManager.getInstance();
+        String cookie = SPUtils.getInstance("user_info").getString("cookie");
+        String[] cookieArray = cookie.split(";");// 多个Cookie是使用分号分隔的
+        for (int i = 0; i < cookieArray.length; i++) {
+            int position = cookieArray[i].indexOf("=");// 在Cookie中键值使用等号分隔
+            String cookieName = cookieArray[i].substring(0, position);// 获取键
+            String cookieValue = cookieArray[i].substring(position + 1);// 获取值
+            String value = cookieName + "=" + cookieValue;// 键值对拼接成 value
+            cookieManager.setCookie(url, value);// 设置 Cookie
+        }
+    }
+
+    /**
+     * 跳转网页
+     *
+     * @param url 网页链接
+     */
+    public static void openUrl(Context context, String url) {
+
+
+        if (URLUtil.isNetworkUrl(url)) {
+            context.startActivity(new Intent(context, WebActivity.class)
+                    .putExtra("from_url", url));
+            enterAnimation(context);
+            return;
+        }
+
+        startActivity(url);
+    }
+
+    public static void openUrl(Context context, String url, boolean isNoTitle) {
+        if (URLUtil.isNetworkUrl(url)) {
+            context.startActivity(new Intent(context, WebActivity.class)
+                    .putExtra("from_url", url)
+                    .putExtra("isNoTitle", isNoTitle));
+            enterAnimation(context);
+        } else {
+            startActivity(url);
+        }
+    }
+
+    /**
+     * 规则：必须同时包含大小写字母及数字
+     *
+     * @param str 被判断字符串
+     * @return 是否同时包含大小写字母及数字
+     */
+    public static boolean isContainAll(String str) {
+        boolean isDigit = false;//定义一个boolean值，用来表示是否包含数字
+        boolean isLowerCase = false;//定义一个boolean值，用来表示是否包含字母
+        boolean isUpperCase = false;
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {   //用char包装类中的判断数字的方法判断每一个字符
+                isDigit = true;
+            } else if (Character.isLowerCase(str.charAt(i))) {  //用char包装类中的判断字母的方法判断每一个字符
+                isLowerCase = true;
+            } else if (Character.isUpperCase(str.charAt(i))) {
+                isUpperCase = true;
+            }
+        }
+        String regex = "^[a-zA-Z0-9]+$";
+        return isDigit && isLowerCase && isUpperCase && str.matches(regex);
+    }
+
+
+    /**
+     * 正则获取Host
+     *
+     * @param url 链接
+     * @return Host
+     */
+    public static String getHost(String url) {
+        if (url == null || url.trim().equals("")) {
+            return "";
+        }
+        String host = "";
+        Pattern p = Pattern.compile("(?<=//|)((\\w)+\\.)+\\w+");
+        Matcher matcher = p.matcher(url);
+        if (matcher.find()) {
+            host = matcher.group();
+        }
+        return host;
+    }
+
+    /**
+     * 在浏览器中打开链接
+     *
+     * @param targetUrl 要打开的网址
+     */
+    public static void openBrowser(Context context, String targetUrl) {
+        if (!TextUtils.isEmpty(targetUrl) && targetUrl.startsWith("file://")) {
+            ToastUtils.showShort(R.string.cant_open);
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri url = Uri.parse(targetUrl);
+        intent.setData(url);
+        context.startActivity(intent);
+    }
 }

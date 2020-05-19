@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡写入权限 写入扩展存储，向扩展卡写入数据 -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE." />
 
     <application
         android:allowBackup="true"
@@ -12,11 +13,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
-        <activity android:name=".ui.activity.BaseActivity"></activity>
-        <activity android:name=".ui.activity.LoginActivity">
+        <activity android:name=".ui.activity.WebActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:hardwareAccelerated="false"></activity>
 
-        </activity>
-        <activity android:name=".ui.activity.MainActivity"></activity>
+        <activity android:name=".ui.activity.SchoolPlanActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:hardwareAccelerated="false"></activity>
+        <activity android:name=".ui.activity.BaseActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.CetActivity" />
+        <activity android:name=".ui.activity.MainActivity" android:exported="false"/>
+        <activity android:name=".ui.activity.ChangePassActivity" android:exported="false"/>
+        <activity android:name=".ui.activity.TestActivity" android:exported="false"/>
+        <activity android:name=".ui.activity.PingJiaoActivity" android:exported="false"/>
+        <activity android:name=".ui.activity.ChooseClassActivity" android:exported="false"/>
         <activity android:name=".ui.activity.LaucherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

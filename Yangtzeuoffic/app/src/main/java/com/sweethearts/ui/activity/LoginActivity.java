@@ -10,10 +10,14 @@ import com.sweethearts.R;
 import com.sweethearts.presenter.LoginPresenter;
 import com.sweethearts.ui.view.LoginView;
 
+// 登陆页面
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
+    // username的编辑框
     private EditText userName_ET;
+    // password的编辑框
     private EditText password_ET;
+    // 登陆按钮
     private Button login_btn;
 
     @Override
@@ -21,6 +25,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+        //  执行登陆事件
         setEvents();
     }
 

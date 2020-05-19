@@ -41,10 +41,11 @@ public class LoginModel {
 
 
     public void loadLoginEvent(final Activity activity, final LoginView view) {
-
+//      设置登陆事件
         view.getLogin_btn().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 获取学号跟密码
                 String user_number = Objects.requireNonNull(view.getUserName_ET().getText()).toString().trim();
                 String user_password = Objects.requireNonNull(view.getPassword_ET().getText()).toString().trim();
                 if (user_number.isEmpty()) {
@@ -56,7 +57,7 @@ public class LoginModel {
                     return;
                 }
                 ToastUtils.showLong(R.string.login_ing);
-
+                // 执行登陆事件
                 doLogin(activity,user_number,user_password);
             }
         });
@@ -64,8 +65,8 @@ public class LoginModel {
     }
 
     public void doLogin(final Activity activity,final String userName,final String password){
-        LogUtils.i(userName,password);
         handler = new Handler(activity.getMainLooper());
+        // 发送请求
         Request request = new Request.Builder()
                 .url(Url.Yangtzeu_Login_Path)
                 .get()
@@ -73,16 +74,20 @@ public class LoginModel {
         OkHttp.getInstance().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                // 发送失败 回到登陆页面
                 Intent intent = new Intent(activity, activity.getClass());
                 activity.startActivity(intent);
+                activity.finish();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                // 通过响应体的内容  对输入的密码进行加密
                 String responseBody = response.body().string();
                 if (responseBody.contains("我的账户")) {
                     Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
+                    activity.finish();
                 } else if (responseBody.contains("用户名") &&responseBody.contains("密码")) {
                     Document document = Jsoup.parse(responseBody);
                     Elements scripts = document.select("script");
@@ -104,7 +109,7 @@ public class LoginModel {
     }
 
     public void login(final Activity activity,final String userName,final String login_encode_pass){
-        LogUtils.i(userName,login_encode_pass);
+       // 进行模拟登陆 提交表单
         FormBody formBody = new FormBody.Builder()
                 .add("username", userName)
                 .add("password", login_encode_pass)
@@ -119,7 +124,10 @@ public class LoginModel {
         OkHttp.getInstance().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                LogUtils.i("lel","第二次请求失败");
+                // 发送失败 回到登陆页面
+                Intent intent = new Intent(activity, activity.getClass());
+                activity.startActivity(intent);
+                activity.finish();
             }
 
             @Override
@@ -136,7 +144,6 @@ public class LoginModel {
                 }
                 //登录失败的错误原因
                 if (myreponseBody.contains("请不要过快点击")) {
-                    LogUtils.i("点击过快");
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -147,13 +154,15 @@ public class LoginModel {
                 }
 
                 //密码错误进行  重新进行此页面  账号密码回显
-                if ( myreponseBody.contains("密码错误") ) {
+                if ( myreponseBody.contains("密码错误")&& myreponseBody.contains("用户")&&myreponseBody.contains("密码")) {
                     ToastUtils.showShort("账号 或 密码错误");
                     return;
                 }
             }
         });
     }
+
+    // 登陆成功 获取相应的jsessionid 保存到user_info这个实体中
     private static void loginSuccess() {
         HashMap<String, String> cookieStr = new HashMap<>();
         List<Cookie> CookieList = OkHttp.cookieJar().loadForRequest(Objects.requireNonNull(HttpUrl.get(URI.create(Url.Yangtzeu_Login_Path))));
@@ -185,7 +194,6 @@ public class LoginModel {
         LogUtils.i("获取到的cookie",mCookie);
         SPUtils.getInstance("user_info").put("online", true);
         SPUtils.getInstance("user_info").put("cookie", mCookie);
-        LogUtils.i("从spUtils获取到的cookie值",SPUtils.getInstance("user_info").getString("cookie"));
         String name = SPUtils.getInstance("user_info").getString("number");
 
 

@@ -3,7 +3,6 @@ package com.sweethearts.http;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
@@ -13,10 +12,7 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.CookiePersistor;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.sweethearts.http.callback.StringCallBack;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -63,17 +59,14 @@ public class OkHttp {
                 .url(url)
                 .get()
                 .build();
-        LogUtils.i(5);
         do_Post(request, onResultStringListener);
     }
 
     public static void do_Post(final Request request, final OnResultStringListener onResultStringListener) {
         Call call = OkHttp.getInstance().newCall(request);
-        LogUtils.i(6);
         StringCallBack stringCallBack = new StringCallBack() {
             @Override
             public void onFinish(Call call, String response, boolean isResponseExist, boolean isCacheResponse) {
-                LogUtils.i(7);
                 if (isResponseExist) {
                     if (onResultStringListener != null)
                         onResultStringListener.onResponse(response);
@@ -93,7 +86,6 @@ public class OkHttp {
                 }
             }
         };
-        LogUtils.i(7);
         call.enqueue(stringCallBack);
 
 

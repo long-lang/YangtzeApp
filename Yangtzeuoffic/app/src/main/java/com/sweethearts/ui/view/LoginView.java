@@ -6,5 +6,5 @@ import android.widget.EditText;
 public interface LoginView {
      EditText getUserName_ET();
      EditText getPassword_ET();
-    Button getLogin_btn();
+     Button getLogin_btn();
 }

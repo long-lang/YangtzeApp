@@ -23,6 +23,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sweethearts.R;
 import com.sweethearts.Utils.YangtzeuUtils;
 import com.sweethearts.entity.GradeBean;
+import com.sweethearts.listener.OnResultListener;
 import com.sweethearts.presenter.GradePart2Presenter;
 import com.sweethearts.ui.activity.ChartActivity;
 import com.sweethearts.ui.adapter.GradeAdapter;
@@ -45,7 +46,7 @@ public class GradePartFragment2 extends BaseFragment implements GradePartView2 {
     private Button sort_low;
     private Button sort_high;
     private Button to_chart;
-
+    private Button change;
 
     private TextView public_choose_score_tv;
     private TextView major_choose_score_tv;
@@ -84,6 +85,7 @@ public class GradePartFragment2 extends BaseFragment implements GradePartView2 {
         major_choose_score_tv = rootView.findViewById(R.id.major_choose_score);
         major_score_tv = rootView.findViewById(R.id.major_score);
         practice_score_tv = rootView.findViewById(R.id.practice_score);
+        change = rootView.findViewById(R.id.change);
 
     }
 
@@ -133,6 +135,28 @@ public class GradePartFragment2 extends BaseFragment implements GradePartView2 {
             }
         });
 
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                YangtzeuUtils.showChooseModel(new OnResultListener<Integer>() {
+                    @Override
+                    public void onResult(Integer projectId) {
+                        switch (projectId) {
+                            case 1:
+                                index_url = Url.Yangtzeu_Grade_Url_Index1;
+                                url = Url.Yangtzeu_Grade_Url1;
+                                smartRefreshLayout.autoRefresh();
+                                break;
+                            case 2:
+                                index_url = Url.Yangtzeu_Grade_Url_Index2;
+                                url = Url.Yangtzeu_Grade_Url2;
+                                smartRefreshLayout.autoRefresh();
+                                break;
+                        }
+                    }
+                });
+            }
+        });
 
         sort_high.setOnClickListener(new View.OnClickListener() {
             @Override

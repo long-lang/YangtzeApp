@@ -32,7 +32,6 @@ public class GradePart1Model {
         term_id = SPUtils.getInstance("user_info").getString("term_id", Url.Default_Term);
         final String[] term_trip = activity.getResources().getStringArray(R.array.term_trip);
         final String[] term_id = activity.getResources().getStringArray(R.array.term_id);
-        LogUtils.i(1);
         for (int i = 0; i < term_id.length; i++) {
             if (this.term_id.equals(term_id[i])) {
                 view.getToolbar().setTitle(term_trip[i]);
@@ -51,7 +50,6 @@ public class GradePart1Model {
         OkHttp.do_Get(url, new OnResultStringListener() {
             @Override
             public void onResponse(String response) {
-                LogUtils.i(response);
                 view.getRefresh().finishRefresh();
                 if (response.contains("请不要过快点击") || response.contains("重复登录")) {
                     requestGradeData(activity, view);
@@ -91,7 +89,6 @@ public class GradePart1Model {
 
 
     public void parseGrade(final Activity activity, final GradePartView1 view, String data) {
-        LogUtils.i(data);
         Document document = Jsoup.parse(data);
         Elements elements = document.select("div.grid table.gridtable tbody tr");
         int Column = document.select("div.grid table.gridtable thead tr th").size();

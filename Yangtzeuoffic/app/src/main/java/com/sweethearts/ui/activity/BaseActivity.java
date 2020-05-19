@@ -7,7 +7,8 @@ import android.os.Bundle;
 import com.sweethearts.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
+    public String url;
+    public String index_url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

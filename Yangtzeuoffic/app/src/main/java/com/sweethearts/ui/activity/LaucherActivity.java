@@ -10,6 +10,7 @@ import com.sweethearts.R;
 import com.sweethearts.presenter.LaucherPresenter;
 import com.sweethearts.ui.view.LaucherView;
 
+// 启动类 先加载启动页面 再在2s后加载登陆页面
 public class LaucherActivity extends BaseActivity implements LaucherView {
 
     @Override

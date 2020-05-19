@@ -1,5 +1,7 @@
 package com.sweethearts.Utils;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import com.blankj.utilcode.util.ObjectUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.sweethearts.http.OkHttp;
 import com.sweethearts.http.OnResultStringListener;
+import com.sweethearts.ui.activity.LoginActivity;
 import com.sweethearts.url.Url;
 
 import org.jsoup.Jsoup;
@@ -173,8 +176,46 @@ public class UserUtils {
         String name = SPUtils.getInstance("user_info").getString("number");
     }
 
+    public static void do_Logout(final Activity activity) {
+        final ProgressDialog progressDialog = MyUtils.getProgressDialog(activity, "注销中...");
+        progressDialog.show();
+        //设置密码空
+        SPUtils.getInstance("user_info").remove("password");
+        //设置cookie空
+        SPUtils.getInstance("user_info").remove("cookie");
+        //设置名字空
+        SPUtils.getInstance("user_info").remove("name");
+        //设置学号空
+        SPUtils.getInstance("user_info").remove("number");
+        //设置班级空
+        SPUtils.getInstance("user_info").remove("class");
+        //设置Cookie失效
+        SPUtils.getInstance("user_info").put("online", false);
+
+
+        OkHttp.do_Get(Url.Yangtzeu_Out, new OnResultStringListener() {
+            @Override
+            public void onResponse(String response) {
+                progressDialog.dismiss();
+                ActivityUtils.finishAllActivities();
+                MyUtils.startActivity(LoginActivity.class);
+                OkHttp.cookieJar().clear();
+                OkHttp.cookieJar().clearSession();
+            }
+
+            @Override
+            public void onFailure(String error) {
+                progressDialog.dismiss();
+                ActivityUtils.finishAllActivities();
+                MyUtils.startActivity(LoginActivity.class);
+            }
+        });
+    }
+
     public interface OnLogResultListener {
         void onSuccess(String response);
         void onFailure(String error);
     }
+
+
 }

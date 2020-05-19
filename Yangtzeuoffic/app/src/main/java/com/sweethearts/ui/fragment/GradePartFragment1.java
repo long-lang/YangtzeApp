@@ -23,6 +23,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sweethearts.R;
 import com.sweethearts.Utils.YangtzeuUtils;
 import com.sweethearts.entity.GradeBean;
+import com.sweethearts.listener.OnResultListener;
 import com.sweethearts.presenter.GradePart1Presenter;
 import com.sweethearts.ui.activity.ChartActivity;
 import com.sweethearts.ui.adapter.GradeAdapter;
@@ -47,7 +48,7 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
     private Button sort_low;
     private Button sort_high;
     private Button to_chart;
-
+    private Button change;
     private List<GradeBean> gradeBeans;
 
     private String index_url;
@@ -69,6 +70,7 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
         sort_high = rootView.findViewById(R.id.sort_high);
         smartRefreshLayout = rootView.findViewById(R.id.refresh);
         to_chart = rootView.findViewById(R.id.to_chart);
+        change = rootView.findViewById(R.id.change);
     }
     public void setEvents() {
         index_url = Url.Yangtzeu_Grade_Url_Index1;
@@ -125,6 +127,29 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
                 } else {
                     ToastUtils.showShort("没有数据");
                 }
+            }
+        });
+
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                YangtzeuUtils.showChooseModel(new OnResultListener<Integer>() {
+                    @Override
+                    public void onResult(Integer projectId) {
+                        switch (projectId) {
+                            case 1:
+                                index_url = Url.Yangtzeu_Grade_Url_Index1;
+                                url = Url.Yangtzeu_Grade_Url1;
+                                smartRefreshLayout.autoRefresh();
+                                break;
+                            case 2:
+                                index_url = Url.Yangtzeu_Grade_Url_Index2;
+                                url = Url.Yangtzeu_Grade_Url2;
+                                smartRefreshLayout.autoRefresh();
+                                break;
+                        }
+                    }
+                });
             }
         });
         sort_high.setOnClickListener(new View.OnClickListener() {

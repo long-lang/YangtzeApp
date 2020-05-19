@@ -25,10 +25,13 @@ import java.util.Objects;
 
 public class GradeFragment extends Fragment implements GradeView {
     public View rootView;
+    //tab和pager管理切换的页面
     private ViewPager pager;
     private TabLayout tab;
+    // fragment适配器
     private FragmentAdapter fragmentAdapter;
     @SuppressLint("StaticFieldLeak")
+    // 工具栏标题
     public static Toolbar toolbar;
 
     @Nullable
@@ -56,7 +59,7 @@ public class GradeFragment extends Fragment implements GradeView {
         final GradePresenter presenter = new GradePresenter(getActivity(), this);
         presenter.setViewPager();
 
-
+        //toolbar的页面加载
         toolbar.inflateMenu(R.menu.grade_menu);
 
     }
