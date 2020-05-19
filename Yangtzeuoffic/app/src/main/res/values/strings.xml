@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--    登录页面的中文-->
     <string name="app_name">Yangtzeuoffic</string>
     <string name="input_number">请输入学号</string>
@@ -98,4 +98,6 @@
     <string name="school_lib">图书服务</string>
     <string name="jwc_news">教务通知</string>
     <string name="school_news">学校新闻</string>
+    <string name="refresh_again">请重新刷新</string>
+
 </resources>

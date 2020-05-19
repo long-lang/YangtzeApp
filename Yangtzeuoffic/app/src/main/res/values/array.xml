@@ -2,6 +2,8 @@
 <resources>
 
     <string-array name="term_trip">
+        <item>年份2019–2020  学期2</item>
+        <item>年份2019–2020  学期1</item>
         <item>年份2018–2019  学期2</item>
         <item>年份2018–2019  学期1</item>
         <item>年份2017–2018  学期2</item>
@@ -15,6 +17,8 @@
     </string-array>
 
     <string-array name="term_id">
+        <item>109</item>
+        <item>89</item>
         <item>69</item>
         <item>49</item>
         <item>48</item>
