@@ -1,8 +1,11 @@
-package com.sweethearts.ui.fragment;
+package com.sweethearts.ui.activity.base;
+
 
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseFragment extends Fragment {
+import com.sweethearts.model.imodel.IBaseMode;
+
+public abstract class BaseFragment extends Fragment implements IBaseMode {
     protected boolean isVisible = false;
     protected boolean isLoadFinish = false;
 
@@ -23,4 +26,6 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void lazyLoad();
 
     private void onInvisible(){}
+
+
 }

@@ -14,7 +14,14 @@
         android:theme="@style/AppTheme.FullScreen"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.activity.LoginActivity"/>
-        <activity android:name=".ui.activity.BaseActivity" />
+        <activity android:name=".ui.activity.base.BaseActivity" />
+        <activity android:name=".ui.activity.ChartActivity"/>
+        <activity android:name=".ui.activity.ImageActivity"/>
+        <activity android:name=".ui.activity.JwcListActivity"/>
+        <activity android:name=".ui.activity.TripActivity"/>
+        <activity android:name=".ui.activity.NewsDetailsActivity"/>
+        <!--下面这个没实现-->
+        <activity android:name=".ui.activity.MessageActivity"/>
         <activity android:name=".ui.activity.LaucherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

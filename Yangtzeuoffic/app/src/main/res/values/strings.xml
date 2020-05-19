@@ -37,4 +37,65 @@
     <string name="choose">选择</string>
     <string name="choose_dialog_term">请设选择操作学期</string>
     <string name="choose_year">选择一个年份即可</string>
+
+    <string name="have_class">今日已完成课程</string>
+    <string name="not_have_class">今日未完成课程</string>
+    <string name="no_class">暂无课程安排</string>
+    <string name="app_notice">软件公告</string>
+    <string name="base_setting">基础设置</string>
+    <string name="setting_center">设置中心</string>
+    <string name="change_theme">主题更换</string>
+    <string name="set_term">设置学期</string>
+    <string name="clean_cache">清空缓存</string>
+    <string name="my_collection">我的收藏</string>
+    <string name="more">更多</string>
+
+    <string name="jwc_notice">教务通知</string>
+    <string name="jwc_event">本周事务</string>
+    <string name="jwc_activity">教学动态</string>
+    <string name="jwc_news_paper">教学简报</string>
+    <string name="load_more"><![CDATA[加载更多>>]]></string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="try_again">加载失败，请重试</string>
+    <string name="change_bg">背景改变</string>
+    <string name="more_notice">更多通知</string>
+    <string name="no_more">没有更多啦</string>
+    <string name="please_read_trip">请仔细阅读导航内容</string>
+
+    <string name="background_server">后台连接服务</string>
+    <string name="background_server_description">保持教务处数据连接</string>
+    <string name="cant_save">无法收藏</string>
+
+    <string name="download">下载</string>
+    <string name="about_me">关于我</string>
+    <string name="app_trip">用户指南</string>
+    <string name="image_details">图片详情</string>
+    <string name="share">分享</string>
+    <string name="save_to_my_phone">保存到手机</string>
+    <string name="clear">取消</string>
+    <string name="skip"><![CDATA[跳过 >>]]></string>
+    <string name="enter_main">进入主界面</string>
+    <string name="please_input">请输入完整</string>
+    <string name="jwc_news_web">教务新闻网</string>
+    <string name="yangtzeu_news_web">长大新闻网</string>
+    <string name="no_open_app">未安装要跳转的App</string>
+    <string name="open_app">即将跳转到App</string>
+    <string name="trip">提示</string>
+    <string name="is_save_image">保存图片</string>
+    <string name="bt_save">保存</string>
+    <string name="web_details">网页详情</string>
+    <string name="no_internet">没有网络连接</string>
+    <string name="save_local">保存位置</string>
+    <string name="lib_home">图书主页</string>
+    <string name="search">搜索</string>
+    <string name="new_book">新书通报</string>
+    <string name="top_book">借阅排行</string>
+    <string name="news_details">新闻详情</string>
+    <string name="news_home">新闻首页</string>
+    <string name="school_lib">图书服务</string>
+    <string name="jwc_news">教务通知</string>
+    <string name="school_news">学校新闻</string>
 </resources>

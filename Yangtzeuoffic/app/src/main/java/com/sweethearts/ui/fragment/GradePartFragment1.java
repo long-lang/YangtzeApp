@@ -25,6 +25,7 @@ import com.sweethearts.Utils.YangtzeuUtils;
 import com.sweethearts.entity.GradeBean;
 import com.sweethearts.presenter.GradePart1Presenter;
 import com.sweethearts.ui.activity.ChartActivity;
+import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.ui.adapter.GradeAdapter;
 import com.sweethearts.ui.view.GradePartView1;
 import com.sweethearts.url.Url;
@@ -62,7 +63,7 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
         return rootView;
     }
 
-    private void findviews(){
+    private void findviews() {
         recyclerView = rootView.findViewById(R.id.mRecyclerView);
         chooseTerm = rootView.findViewById(R.id.chooseTerm);
         sort_low = rootView.findViewById(R.id.sort_low);
@@ -70,6 +71,27 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
         smartRefreshLayout = rootView.findViewById(R.id.refresh);
         to_chart = rootView.findViewById(R.id.to_chart);
     }
+
+   /* private void findviews(){
+        recyclerView = rootView.findViewById(R.id.mRecyclerView);
+        chooseTerm = rootView.findViewById(R.id.chooseTerm);
+        sort_low = rootView.findViewById(R.id.sort_low);
+        sort_high = rootView.findViewById(R.id.sort_high);
+        smartRefreshLayout = rootView.findViewById(R.id.refresh);
+        to_chart = rootView.findViewById(R.id.to_chart);
+    }*/
+
+    @Override
+    public void findViews() {
+            recyclerView = rootView.findViewById(R.id.mRecyclerView);
+            chooseTerm = rootView.findViewById(R.id.chooseTerm);
+            sort_low = rootView.findViewById(R.id.sort_low);
+            sort_high = rootView.findViewById(R.id.sort_high);
+            smartRefreshLayout = rootView.findViewById(R.id.refresh);
+            to_chart = rootView.findViewById(R.id.to_chart);
+        }
+
+
     public void setEvents() {
         index_url = Url.Yangtzeu_Grade_Url_Index1;
         url = Url.Yangtzeu_Grade_Url1;

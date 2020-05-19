@@ -9,6 +9,7 @@ import com.sweethearts.R;
 import com.sweethearts.Utils.MyUtils;
 import com.sweethearts.entity.GradeBean;
 import com.sweethearts.presenter.ChartPresenter;
+import com.sweethearts.ui.activity.base.BaseActivity;
 import com.sweethearts.ui.view.ChartView;
 
 
