@@ -13,6 +13,7 @@ import com.sweethearts.ui.activity.base.BaseActivity;
 import com.sweethearts.ui.view.CetView;
 import com.sweethearts.url.Url;
 import androidx.appcompat.widget.Toolbar;
+
 public class CetActivity extends BaseActivity implements CetView {
 
     private String CET_DATE;
@@ -43,6 +44,7 @@ public class CetActivity extends BaseActivity implements CetView {
         index_url = Url.Yangtzeu_Cet_Index1;
         url = Url.Yangtzeu_Cet1;
         presenter = new CetPresenter(this, this);
+        // cet历史记录
         presenter.getCetHistoryGrade();
         loading.startAnim();
     }

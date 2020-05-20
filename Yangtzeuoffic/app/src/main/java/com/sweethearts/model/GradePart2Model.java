@@ -36,7 +36,6 @@ public class GradePart2Model {
             }
         }
 
-
         view.public_choose_scores().clear();
         view.major_choose_scores().clear();
         view.major_scores().clear();
@@ -66,7 +65,8 @@ public class GradePart2Model {
 
                         if (before == 47) before = 46;
                         if (before == 68) before = 49;
-
+                        if (before == 88) before = 69;
+                        if (before == 108) before = 89;
                         final int finalBefore = before;
 
                         SnackbarUtils.with(view.getRecyclerView()).setMessage("当前学期（ID：" + now_term + "）没有成绩数据")
@@ -83,8 +83,6 @@ public class GradePart2Model {
                 } else {
                     //设置Cookie不可用
                     SPUtils.getInstance("user_info").put("online", false);
-
-
                 }
             }
 
@@ -224,7 +222,7 @@ public class GradePart2Model {
 
             }
         }
-
+        // 初始化头部信息
         double public_choose_sum = 0;
         for (int i = 0; i < public_choose_scores.size(); i++) {
             public_choose_sum += public_choose_scores.get(i);

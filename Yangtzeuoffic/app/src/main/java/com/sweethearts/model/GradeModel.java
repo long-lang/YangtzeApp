@@ -17,7 +17,7 @@ public class GradeModel {
         GradePartFragment3 fragment3 = new GradePartFragment3();
         
 
-        // 与其适配
+        //fragment与viewPage绑定
         view.getAdapter().addFragment(activity.getString(R.string.term_grade), fragment1);
         view.getAdapter().addFragment(activity.getString(R.string.all_grade), fragment2);
         view.getAdapter().addFragment(activity.getString(R.string.grade_point), fragment3);

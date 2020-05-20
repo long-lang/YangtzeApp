@@ -94,13 +94,10 @@ public class GradePartFragment2 extends BaseFragment implements GradePartView2 {
     public void setEvents() {
         index_url = Url.Yangtzeu_AllGrade_Url_Index1;
         url = Url.Yangtzeu_AllGrade_Url1;
-
         gradeBeans = new ArrayList<>();
         gradeAdapter = new GradeAdapter(getActivity());
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(gradeAdapter);
-
-
         presenter = new GradePart2Presenter(getActivity(), this);
 
         smartRefreshLayout.setEnableLoadMore(false);
@@ -111,9 +108,6 @@ public class GradePartFragment2 extends BaseFragment implements GradePartView2 {
                 presenter.loadGradeData();
             }
         });
-        smartRefreshLayout.autoRefresh();
-        index_url = Url.Yangtzeu_AllGrade_Url_Index1;
-        url = Url.Yangtzeu_AllGrade_Url1;
         smartRefreshLayout.autoRefresh();
         sort_low.setOnClickListener(new View.OnClickListener() {
             @Override

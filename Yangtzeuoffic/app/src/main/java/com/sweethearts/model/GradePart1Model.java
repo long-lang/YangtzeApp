@@ -29,18 +29,19 @@ public class GradePart1Model {
 
 
     public void loadGradeData(Activity activity, GradePartView1 view) {
+        // 得到term_id  没有就使用默认的id
         term_id = SPUtils.getInstance("user_info").getString("term_id", Url.Default_Term);
         final String[] term_trip = activity.getResources().getStringArray(R.array.term_trip);
         final String[] term_id = activity.getResources().getStringArray(R.array.term_id);
+//        设置标题
         for (int i = 0; i < term_id.length; i++) {
             if (this.term_id.equals(term_id[i])) {
                 view.getToolbar().setTitle(term_trip[i]);
             }
         }
-
+        // 先清除数据 再加载数据
         view.getAdapter().clear();
         view.getGradeBeans().clear();
-
         requestGradeData(activity, view);
     }
 
@@ -62,7 +63,8 @@ public class GradePart1Model {
 
                         if (before == 47) before = 46;
                         if (before == 68) before = 49;
-
+                        if (before == 88) before = 69;
+                        if (before == 108) before = 89;
                         final int finalBefore = before;
                         SnackbarUtils.with(view.getRecyclerView()).setMessage("当前学期（ID：" + now_term + "）没有成绩数据")
                                 .setDuration(SnackbarUtils.LENGTH_LONG)

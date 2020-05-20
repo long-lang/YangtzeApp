@@ -48,17 +48,22 @@ import java.util.List;
 public class YangtzeuUtils {
 
     public static void showChooseTerm(Activity activity, final DialogInterface.OnClickListener listener) {
+        // 获取学期的名称跟学期的id
         final String[] term_trip = activity.getResources().getStringArray(R.array.term_trip);
         final String[] term_id = activity.getResources().getStringArray(R.array.term_id);
+        // 弹窗的头部
         @SuppressLint("InflateParams")
         View view = activity.getLayoutInflater().inflate(R.layout.view_choose_term, null);
+        // 设置对话框
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.show();
+        // 获得view_choose_term的线性布局
         LinearLayout layout = view.findViewById(R.id.slow_container);
         for (int i = 0; i < term_trip.length; i++) {
             @SuppressLint("InflateParams")
+            // 设置选择项
             View item = activity.getLayoutInflater().inflate(R.layout.view_choose_term_item, null);
             TextView title = item.findViewById(R.id.title);
             TextView bt = item.findViewById(R.id.bt);
@@ -67,6 +72,7 @@ public class YangtzeuUtils {
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // dialog消失 which得到对应的学期id
                     dialog.dismiss();
                     ToastUtils.showLong("你选择了：" + term_trip[finalI]);
                     int which = Integer.parseInt(term_id[finalI]);

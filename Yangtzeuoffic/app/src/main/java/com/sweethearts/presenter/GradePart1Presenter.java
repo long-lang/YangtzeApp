@@ -35,17 +35,14 @@ public class GradePart1Presenter {
     }
 
     public void loadGradeData() {
-        LogUtils.i(2);
         OkHttp.do_Get(view.getIndexUrl(), new OnResultStringListener() {
             @Override
             public void onResponse(String response) {
-                LogUtils.i(3);
                 model.loadGradeData(activity, view);
             }
 
             @Override
             public void onFailure(String error) {
-                LogUtils.i(4);
                 view.getRefresh().finishRefresh();
             }
         });

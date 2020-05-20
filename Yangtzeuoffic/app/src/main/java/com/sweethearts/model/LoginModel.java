@@ -58,6 +58,8 @@ public class LoginModel {
                 }
                 ToastUtils.showLong(R.string.login_ing);
                 // 执行登陆事件
+                SPUtils.getInstance("user_info").put("number", user_number);
+                SPUtils.getInstance("user_info").put("password", user_password);
                 doLogin(activity,user_number,user_password);
             }
         });

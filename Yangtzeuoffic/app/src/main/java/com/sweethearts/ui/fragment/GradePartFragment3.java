@@ -9,15 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sweethearts.R;
+import com.sweethearts.Utils.YangtzeuUtils;
 import com.sweethearts.entity.PointBean;
+import com.sweethearts.listener.OnResultListener;
 import com.sweethearts.presenter.GradePart3Presenter;
 import com.sweethearts.ui.activity.base.BaseFragment;
 import com.sweethearts.ui.adapter.PointAdapter;
@@ -64,7 +64,7 @@ public class GradePartFragment3 extends BaseFragment implements GradePartView3 {
         all_score = rootView.findViewById(R.id.all_score);
         all_point = rootView.findViewById(R.id.all_point);
         header = rootView.findViewById(R.id.header);
-
+        change = rootView.findViewById(R.id.change);
     }
 
 
@@ -72,9 +72,9 @@ public class GradePartFragment3 extends BaseFragment implements GradePartView3 {
         index_url = Url.Yangtzeu_AllGrade_Url_Index1;
         url = Url.Yangtzeu_AllGrade_Url1;
 
+        //学分的适配器
         pointAdapter = new PointAdapter(getActivity());
         presenter = new GradePart3Presenter(getActivity(), this);
-
 
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setAdapter(pointAdapter);
@@ -89,7 +89,28 @@ public class GradePartFragment3 extends BaseFragment implements GradePartView3 {
             }
         });
         smartRefreshLayout.autoRefresh();
-
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                YangtzeuUtils.showChooseModel(new OnResultListener<Integer>() {
+                    @Override
+                    public void onResult(Integer projectId) {
+                        switch (projectId) {
+                            case 1:
+                                index_url = Url.Yangtzeu_AllGrade_Url_Index1;
+                                url = Url.Yangtzeu_AllGrade_Url1;
+                                smartRefreshLayout.autoRefresh();
+                                break;
+                            case 2:
+                                index_url = Url.Yangtzeu_AllGrade_Url_Index2;
+                                url = Url.Yangtzeu_AllGrade_Url2;
+                                smartRefreshLayout.autoRefresh();
+                                break;
+                        }
+                    }
+                });
+            }
+        });
 
 
     }

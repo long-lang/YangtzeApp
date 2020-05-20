@@ -7,7 +7,6 @@ package com.sweethearts.ui.adapter;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,13 +77,6 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
                         .setTitle("绩点详情")
                         .setMessage(details)
                         .setPositiveButton("知道了",null)
-//                        .setNegativeButton("分享绩点", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                MyUtils.shareText(context, "给你看看我的绩点噢" +
-//                                        "!\n\n" + details + "\n\n数据来自：" + Url.AppDownUrl);
-//                            }
-//                        })
                         .create();
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.show();

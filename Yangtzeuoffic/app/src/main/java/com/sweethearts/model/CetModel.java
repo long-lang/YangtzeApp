@@ -58,7 +58,7 @@ public class CetModel  {
                             ToastUtils.showShort("CET历史成绩：" + activity.getString(R.string.no_data));
                             continue;
                         }
-
+                        // 加载cet每项成绩  共用4项 item 0 1 2 3
                         LinearLayout ItemView2 = (LinearLayout) View.inflate(activity, R.layout.activity_cet_item, null);
                         LinearLayout cardView = ItemView2.findViewById(R.id.item);
                         view.getCetHistoryContainer().addView(ItemView2);
@@ -110,22 +110,6 @@ public class CetModel  {
                 ToastUtils.showShort(R.string.load_error);
             }
         });
-    }
-
-
-
-
-
-
-
-    private String getItem(String string) {
-        String item;
-        if (string.contains("'")) {
-            item = string.substring(string.indexOf("'") + 1, string.lastIndexOf("'"));
-        } else {
-            item = string.substring(string.indexOf(":") + 1);
-        }
-        return item;
     }
 
 }

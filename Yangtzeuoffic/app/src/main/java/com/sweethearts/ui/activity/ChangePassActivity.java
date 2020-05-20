@@ -24,9 +24,13 @@ import com.sweethearts.url.Url;
 
 public class ChangePassActivity extends BaseActivity implements ChangePassView {
     private Toolbar toolbar;
+    // 学号
     private TextInputEditText ACC;
+    // 旧密码
     private TextInputEditText PassOld;
+    // 新密码
     private TextInputEditText PassNew;
+    // 确认新密码
     private TextInputEditText PassDone;
     private Button ChangeBtn;
     private ChangePassPresenter presenter;
@@ -47,7 +51,6 @@ public class ChangePassActivity extends BaseActivity implements ChangePassView {
         PassNew =  findViewById(R.id.txt2);
         PassDone =  findViewById(R.id.txt3);
         ChangeBtn =  findViewById(R.id.ChangeBtn);
-        ImageView default_bg = findViewById(R.id.default_bg);
     }
 
     @Override

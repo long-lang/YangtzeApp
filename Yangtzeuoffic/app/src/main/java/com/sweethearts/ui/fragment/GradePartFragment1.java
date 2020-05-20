@@ -11,7 +11,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.ObjectUtils;
@@ -57,7 +56,6 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         rootView = inflater.inflate(R.layout.fragment_grade_part1, container, false);
         findViews();
         setEvents();
@@ -75,39 +73,40 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
         change = rootView.findViewById(R.id.change);
     }
 
-
-
-
-
     public void setEvents() {
         index_url = Url.Yangtzeu_Grade_Url_Index1;
         url = Url.Yangtzeu_Grade_Url1;
 
-
         gradeBeans = new ArrayList<>();
+        //成绩适配
         gradeAdapter = new GradeAdapter(getActivity());
+
+        // recyclerView类似于listView
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(gradeAdapter);
 
-
         presenter = new GradePart1Presenter(getActivity(), this);
-
+        //智能刷新控件 是否启用列表惯性滑动到底部时自动加载更多
         smartRefreshLayout.setEnableLoadMore(false);
+        //设置下拉刷新监听事件
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
                 presenter.loadGradeData();
             }
         });
+        //自动刷新
         smartRefreshLayout.autoRefresh();
 
-
+        //给选择学期设置监听事件
         chooseTerm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // showChooseTerm初始化切换的弹窗
                 YangtzeuUtils.showChooseTerm(Objects.requireNonNull(getActivity()), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+//                        将获取到的学期id存到term_id中
                         SPUtils.getInstance("user_info").put("term_id", String.valueOf(which));
                         presenter.loadGradeData();
                     }
@@ -115,6 +114,7 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
             }
         });
 
+        // 由高向低
         sort_low.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +122,8 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
 
             }
         });
+
+        // 表格监听事件
         to_chart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +138,7 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
                 }
             }
         });
-
+        // 本辅科切换点击事件
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +161,7 @@ public class GradePartFragment1 extends BaseFragment implements GradePartView1 {
                 });
             }
         });
+        // 由低向高排序
         sort_high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

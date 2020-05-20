@@ -29,7 +29,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
+//RecyclerView 的适配器
 public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> {
     private Context context;
     private List<GradeBean> gradeBeans=new ArrayList<>();
@@ -42,11 +42,12 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
         gradeBeans = BigList;
     }
 
+    // 清除数据并提醒数据改动
     public void clear() {
         gradeBeans.clear();
         notifyDataSetChanged();
     }
-
+    // 排序
     public void sort(final boolean isUp) {
         Collections.sort(gradeBeans, new Comparator<GradeBean>() {
             @Override
@@ -71,7 +72,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, @SuppressLint("RecyclerView") final int i) {
         GradeBean gradeBean = gradeBeans.get(i);
 
-
+        // 获取每一条的数据
         String courseYear = gradeBean.getCourseYear();
         String courseTerm = gradeBean.getCourseTerm();
         String courseCode = gradeBean.getCourseCode();
@@ -100,6 +101,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
         viewHolder.st_year.setText("课程学年：" + courseYear);
         viewHolder.st_kind.setText("课程类别：" + courseKind);
 
+        // 设置点击弹出来的消息
         final String details = "科目名称：" + courseName
                 + "\n年份：" + courseYear
                 + "\n学期：" + courseTerm
@@ -123,6 +125,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.ViewHolder> 
             }
         });
 
+        // 给不同的成绩 设置不同的颜色
         try {
             Double sss= Double.valueOf(courseZuiZhong);
             if (90 <= sss) {
