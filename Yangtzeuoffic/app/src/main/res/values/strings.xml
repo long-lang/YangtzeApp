@@ -173,5 +173,18 @@
     <string name="jwc_news">教务通知</string>
     <string name="school_news">学校新闻</string>
     <string name="plan_compl">计划完成情况</string>
+    <string name="my_table">课表详情</string>
+    <string name="input_my_table">设置自定义内容</string>
+    <string name="start_week">请输入开始周</string>
+    <string name="end_week">请输入结束周</string>
+    <string name="input_my_class">请输入自定义课表或活动</string>
+    <string name="get_table_error">未获取到信课表息，请切换周次（或学期）后重试</string>
+    <string name="clear_set">取消操作</string>
+    <string name="load_file_error">文件选择错误</string>
+    <string name="change_alpha">滑动改变色块透明度</string>
+    <string name="alpha_test">透明度测试</string>
+
+
+
 
 </resources>

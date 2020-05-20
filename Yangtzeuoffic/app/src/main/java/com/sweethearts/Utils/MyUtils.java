@@ -460,6 +460,20 @@ public class MyUtils {
         return weekDays[w];
     }
 
+    /**
+     * 十进制转为16进制
+     *
+     * @param a 10进制数
+     * @return 16进制数
+     */
+    public static String formattingH(int a) {
+        String i = Integer.toHexString(a);
+        if (i.length() != 2) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
 
    /* public static void openImage(Context context, String url) {
         String[] trip = {url};
